@@ -4,11 +4,23 @@ import {
   UserLoginInput,
   UserSignupInput,
   UserLoginResponse,
+  UsersListResponse,
 } from "./usersSchema";
-import { serializeResponse, validateBody } from "../../middleware";
+import {
+  authenticate,
+  serializeResponse,
+  validateBody,
+} from "../../middleware";
 import UsersController from "./usersController";
 
 const router = Router();
+
+router.get(
+  "/", // list users (id + name)
+  authenticate,
+  serializeResponse(UsersListResponse),
+  UsersController.getUsers
+);
 
 router.post(
   "/", // route path

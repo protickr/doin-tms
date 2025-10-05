@@ -108,8 +108,8 @@ export default class TasksController {
       const existing = await TasksService.getById(id, userId);
       if (!existing) return res.status(404).json({ message: "Task not found" });
 
-      await TasksService.delete(id);
-      return res.status(204).send();
+      const deleted = await TasksService.delete(id);
+      return res.status(204).send(deleted);
     } catch (err) {
       console.error(err);
       return res.status(500).json({ message: "Internal server error" });
