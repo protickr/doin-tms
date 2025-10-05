@@ -18,4 +18,12 @@ export default class UsersService {
     });
     return user;
   }
+
+  static async getUsersList() {
+    // return only id and name for listing
+    return prisma.user.findMany({
+      select: { id: true, name: true },
+      orderBy: { name: "asc" },
+    });
+  }
 }

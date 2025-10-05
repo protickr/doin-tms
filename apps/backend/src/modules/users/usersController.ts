@@ -7,7 +7,13 @@ const JWT_SECRET: string = process.env.JWT_SECRET as string;
 
 export default class UsersController {
   static async getUsers(req: Request, res: Response) {
-    res.send("List of users");
+    try {
+      const users = await UsersService.getUsersList();
+      return res.json(users);
+    } catch (err) {
+      console.error(err);
+      return res.status(500).json({ message: "Internal server error" });
+    }
   }
 
   static async signUp(req: Request, res: Response) {

@@ -9,6 +9,13 @@ const User = Type.Object({
   updatedAt: Type.String({ format: "date-time" }),
 });
 
+const UserListItem = Type.Object({
+  id: Type.String({ format: "uuid" }),
+  name: Type.String(),
+});
+
+const UsersListResponse = Type.Array(UserListItem);
+
 const UserLoginResponse = Type.Object({
   name: Type.String(),
   email: Type.String({ format: "email" }),
@@ -27,5 +34,13 @@ const UserLoginInput = Type.Object({
 });
 
 type UserType = Static<typeof User>;
-export { User, UserType, UserSignupInput, UserLoginInput, UserLoginResponse };
+export {
+  User,
+  UserType,
+  UserSignupInput,
+  UserLoginInput,
+  UserLoginResponse,
+  UserListItem,
+  UsersListResponse,
+};
 
