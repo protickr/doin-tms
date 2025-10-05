@@ -4,9 +4,8 @@ import routes from "./routes";
 import { globalErrorHandler } from "../src/middleware";
 
 const app = express();
-
-app.use(routes);
 app.use(express.json());
+app.use(routes);
 app.use(globalErrorHandler);
 
 const PORT = config.port || 8080;

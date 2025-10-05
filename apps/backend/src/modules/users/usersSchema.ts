@@ -1,13 +1,31 @@
 import { Type, Static } from "@sinclair/typebox";
 
 // Define a schema for a user
-const UserSchema = Type.Object({
+const User = Type.Object({
   id: Type.String({ format: "uuid" }),
   name: Type.String(),
   email: Type.String({ format: "email" }),
-  age: Type.Optional(Type.Number({ minimum: 0 })),
+  createdAt: Type.String({ format: "date-time" }),
+  updatedAt: Type.String({ format: "date-time" }),
 });
 
-// Infer the TypeScript type from the schema
-type User = Static<typeof UserSchema>;
-export { UserSchema, User };
+const UserLoginResponse = Type.Object({
+  name: Type.String(),
+  email: Type.String({ format: "email" }),
+  token: Type.String(),
+});
+
+const UserSignupInput = Type.Object({
+  name: Type.String({ minLength: 1 }),
+  email: Type.String({ format: "email" }),
+  password: Type.String({ minLength: 6 }),
+});
+
+const UserLoginInput = Type.Object({
+  email: Type.String({ format: "email" }),
+  password: Type.String({ minLength: 6 }),
+});
+
+type UserType = Static<typeof User>;
+export { User, UserType, UserSignupInput, UserLoginInput, UserLoginResponse };
+
