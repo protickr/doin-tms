@@ -1,0 +1,15 @@
+**/node_modules/**
+**/dist/**
+**/build/**
+**/.vscode/**
+**/*.log
+**/*.lock
+**/.DS_Store
+**/.env
+**/.env.local
+**/.env.*.local
+**/pnpm-debug.log
+**/.idea/**
+**/.history/**
+
+
